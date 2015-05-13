@@ -1,10 +1,13 @@
 CC = gcc
-CFLAGS = -lmysqlclient -lm -lz
+CFLAGS = -lmysqlclient -lm -lz -I /usr/local/mysql/include -L /usr/local/mysql/lib
 DEPS = header.h
-OBJ = main.o utilities.o
+OBJ = login.o utilities.o
  
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
  
-CES: $(OBJ)
+login: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS)
+
+clean:	
+	rm *.o login
