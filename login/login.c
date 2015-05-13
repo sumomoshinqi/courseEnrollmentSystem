@@ -1,5 +1,5 @@
 //
-//  main.c
+//  login.c
 //  Course Enrolment System
 //
 //  Created by 李秦琦 on 15/5/9.
