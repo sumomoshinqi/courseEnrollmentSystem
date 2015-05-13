@@ -1,5 +1,5 @@
 //
-//  main.c
+//  enroll.c
 //  Course Enrolment System
 //
 //  Created by 李秦琦 on 15/5/9.
@@ -7,9 +7,6 @@
 //
 
 #include "header.h"
-
-char *base64Encode(const char *data, int data_len);
-char *base64Decode(const char *data, int data_len);
 
 void finishWithError(MYSQL *mysql)
 {
