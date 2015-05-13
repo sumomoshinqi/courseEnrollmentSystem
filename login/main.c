@@ -20,7 +20,7 @@ void finishWithError(MYSQL *mysql)
 
 void testBase64()
 {
-    char *testingMessage = "3135134162";
+    char *testingMessage = "TestingMessage";
     int  encodedLength  = (int)strlen(testingMessage);
     char *encodedMessage = base64Encode(testingMessage, encodedLength);
     int  decodedLength = (int)strlen(encodedMessage);
