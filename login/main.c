@@ -7,7 +7,6 @@
 //
 
 #include "header.h"
-#include "/usr/local/mysql/include/my_global.h"
 
 char *base64Encode(const char *data, int data_len);
 char *base64Decode(const char *data, int data_len);
@@ -34,14 +33,15 @@ void testBase64()
 int login(MYSQL *mysql)
 {
     MYSQL *test = mysql_init(NULL);
-    MYSQL_RES *result;
+    MYSQL_RES *result = NULL;
     
-    char loginName[30], loginPassword[100];
-    char query[200];
+    unsigned long loginName;
+    char loginPassword[100];
+    char query[100];
     // Read loginName, loginPassword from loginInfo.dat
     freopen("loginInfo.dat", "r", stdin);
     
-    scanf("%s%s", loginName, loginPassword);
+    scanf("%ld %s", &loginName, loginPassword);
     
     if (test == NULL) {
         fprintf(stderr, "mysql_init() failed\n");
@@ -55,9 +55,13 @@ int login(MYSQL *mysql)
     }
     
     // Try to login
-    sprintf(query, "select * from 用户 where 学号 = \'%s\'", loginName);
-    mysql_query(test, query);
+    memset(query, 0, sizeof(query));
+    sprintf(query, "select * from Student where studentID=%ld", loginName);
+    //sprintf(query, "select * from users");
+    if(mysql_query(test, query))
+        finishWithError (test);
     result = mysql_store_result(test);
+    //printf("%d\n", mysql_field_count(test));
         
     if (!mysql_num_rows(result)) {
         // Username not found
@@ -79,7 +83,7 @@ int login(MYSQL *mysql)
             // Connection failed
             return -1;
         }
-        sprintf(query, "select * from 用户 where 学号 = \'%s\' and 密码 = \'%s\'", loginName, enc);
+        sprintf(query, "select * from Student where studentID=%ld and Psw = \'%s\';", loginName, enc);
         mysql_query(test, query);
         result = mysql_store_result(test);
         if (!mysql_num_rows(result)) {
@@ -88,6 +92,10 @@ int login(MYSQL *mysql)
             mysql_free_result(result);
             return -3;
         }
+    }
+    if (mysql_real_connect(mysql, SERVER, TESTUSERNAME, TESTPASSWORD, DATABASE, 0, NULL, 0) == NULL) {
+        // Connection failed
+        return -1;
     }
     // Login successful
     return 1;
@@ -120,6 +128,19 @@ int main(int argc, const char * argv[]) {
     
     // Write login state into loginState.dat
     freopen("loginState.dat", "w", stdout);
+    if (loginStateCode == -1) {
+        printf("无法连接至数据库\n");
+    }
+    else if (loginStateCode == -2) {
+        printf("无效用户名\n");
+    }
+    else if (loginStateCode == -3) {
+        printf("密码无效\n");
+    }
+    else if (loginStateCode == 1) {
+        printf("登陆成功\n");
+    }
+
     
     mysql_close(mysql);
     return 0;

@@ -14,7 +14,8 @@
 #include <string.h>
 #include <time.h>
 // Include MySQL headers
-#include "/usr/local/mysql/include/mysql.h"
+#include <mysql.h>
+#include <my_global.h>
 
 const char SERVER[] = "10.141.249.176";
 const char DATABASE[] = "Courses";
