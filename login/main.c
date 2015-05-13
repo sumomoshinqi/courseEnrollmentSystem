@@ -140,7 +140,7 @@ int main(int argc, const char * argv[]) {
     else if (loginStateCode == 1) {
         printf("登陆成功\n");
     }
-    
+
     mysql_close(mysql);
     return 0;
 }

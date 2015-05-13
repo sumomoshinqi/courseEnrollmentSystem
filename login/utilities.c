@@ -5,7 +5,7 @@
 //  Created by 李秦琦 on 15/5/11.
 //  Copyright (c) 2015年 李秦琦. All rights reserved.
 //
-#include <stdio.h>
+#include "header.h"
 
 const char base[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
 
@@ -19,8 +19,10 @@ char *base64Encode(const char *data, int dataLen)
     int tmp = 0;
     char changed[4];
     int i = 0;
+    
     retLen = dataLen / 3;
     temp = dataLen % 3;
+    
     if (temp > 0) {
         retLen += 1;
     }
@@ -30,12 +32,15 @@ char *base64Encode(const char *data, int dataLen)
         printf("No enough memory.\n");
         exit(0);
     }
+    
     memset(ret, 0, retLen);
     f = ret;
+    
     while (tmp < dataLen) {
         temp = 0;
         prepare = 0;
         memset(changed, '\0', 4);
+        
         while (temp < 3) {
             if (tmp >= dataLen) {
                 break;
@@ -44,7 +49,9 @@ char *base64Encode(const char *data, int dataLen)
             tmp++;
             temp++;
         }
+        
         prepare = (prepare << ((3 - temp) * 8));
+        
         for (i = 0; i < 4 ; i++) {
             if (temp < i) {
                 changed[i] = 0x40;
@@ -79,6 +86,7 @@ char *base64Decode(const char *data, int dataLen)
     char need[3];
     int prepare = 0;
     int i = 0;
+    
     if (*(data + dataLen - 1) == '=') {
         equalCount += 1;
     }
@@ -88,6 +96,7 @@ char *base64Decode(const char *data, int dataLen)
     if (*(data + dataLen - 3) == '=') {
         equalCount += 1;
     }
+    
     switch (equalCount) {
         case 0:
             retLen += 4;//3 + 1 [1 for NULL]
@@ -102,6 +111,7 @@ char *base64Decode(const char *data, int dataLen)
             retLen += 2;//Ceil((6*1)/8)+1
             break;
     }
+    
     ret = (char *)malloc(retLen);
     if (ret == NULL) {
         printf("No enough memory.\n");
@@ -109,10 +119,12 @@ char *base64Decode(const char *data, int dataLen)
     }
     memset(ret, 0, retLen);
     f = ret;
+    
     while (tmp < (dataLen - equalCount)) {
         temp = 0;
         prepare = 0;
-        memset(need, 0, 4);
+        memset(need, 0, sizeof(need));
+        
         while (temp < 4) {
             if (tmp >= (dataLen - equalCount)) {
                 break;
@@ -121,7 +133,9 @@ char *base64Decode(const char *data, int dataLen)
             temp++;
             tmp++;
         }
+        
         prepare = prepare << ((4-temp) * 6);
+        
         for (i=0; i<3 ;i++ ) {
             if (i == temp) {
                 break;
@@ -130,6 +144,8 @@ char *base64Decode(const char *data, int dataLen)
             f++;
         }
     }
+    
     *f = '\0';
+    
     return ret;
 }
