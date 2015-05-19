@@ -169,7 +169,7 @@ int main(int argc, const char * argv[]) {
         printf("时间冲突，已选择其他课程");
     }
     
-    // Write login state into loginState.dat
+    // Write enroll state into enrollState.dat
     freopen("enrollState.dat", "w", stdout);
     if (enrollStateCode == 0) {
         printf("选课失败，人数已满");
