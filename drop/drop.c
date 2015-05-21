@@ -24,10 +24,10 @@ int drop(MYSQL *mysql)
     char courseID[20];
     
     // Read loginName, loginPassword from loginInfo.dat
-    freopen("loginInfo.dat", "r", stdin);
+    // freopen("loginInfo.dat", "r", stdin);
     scanf("%ld", &loginName);
     
-    freopen("dropInfo.dat", "r", stdin);
+    // freopen("dropInfo.dat", "r", stdin);
     scanf("%s", courseID);
     
     // check course ID
@@ -97,7 +97,7 @@ int main(int argc, const char * argv[]) {
     }
     
     // Write drop state into dropState.dat
-    freopen("dropState.dat", "w", stdout);
+    //freopen("dropState.dat", "w", stdout);
     if (dropStateCode == 1) {
         printf("退课成功");
     } else if (dropStateCode == -1) {

@@ -9,10 +9,11 @@
 #ifndef Course_Enrolment_System_header_h
 #define Course_Enrolment_System_header_h
 
+#include <winsock2.h>
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <time.h>
 // Include MySQL headers
 #include <mysql.h>
 #include <my_global.h>

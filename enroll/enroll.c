@@ -29,10 +29,10 @@ int enroll(MYSQL *mysql)
     int weekdayEnroll, courseStartEnroll, courseEndEnroll;
     
     // Read loginName, loginPassword from loginInfo.dat
-    freopen("loginInfo.dat", "r", stdin);
+    // freopen("loginInfo.dat", "r", stdin);
     scanf("%ld", &loginName);
     
-    freopen("enrollInfo.dat", "r", stdin);
+    // freopen("enrollInfo.dat", "r", stdin);
     scanf("%s", courseID);
     
     // Check if time slots are available
@@ -170,7 +170,7 @@ int main(int argc, const char * argv[]) {
     }
     
     // Write enroll state into enrollState.dat
-    freopen("enrollState.dat", "w", stdout);
+    // freopen("enrollState.dat", "w", stdout);
     if (enrollStateCode == 0) {
         printf("选课失败，人数已满");
     } else if (enrollStateCode == 1) {

@@ -1,12 +1,26 @@
 //
-//  search.c
+//  list.c
 //  Course Enrolment System
 //
 //  Created by 李秦琦 on 15/5/9.
 //  Copyright (c) 2015年 李秦琦. All rights reserved.
 //
+#pragma execution_character_set("utf-8")
 
-#include "header.h"
+#include <winsock2.h>
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+// Include MySQL headers
+#include <mysql.h>
+#include <my_global.h>
+
+const char SERVER[] = "10.141.249.176";
+const char DATABASE[] = "Courses";
+const char TESTUSERNAME[] = "Test";
+const char TESTPASSWORD[] = "Test";
 
 void finishWithError(MYSQL *mysql)
 {
@@ -26,21 +40,9 @@ int search(MYSQL *mysql)
     // freopen("searchInfo.dat", "r", stdin);
     scanf("%s", courseID);
     
-    if (strlen(courseID) > 0) {
-        // check course ID
-        memset(query, 0, sizeof(query));
-        sprintf(query, "SELECT * FROM CourseList WHERE courseID = \"%s\"", courseID);
-        if (mysql_query(mysql, query)) {
-            finishWithError(mysql);
-        }
-        result = mysql_store_result(mysql);
-        if (!mysql_num_rows(result)) {
-            // Invalid course ID
-            return -1;
-        }
-        
+    if (strlen(courseID) > 0) {  
         // search start
-        mysql_query(mysql, "set names utf8");
+        mysql_query(mysql, "set names gb2312");
         memset(query, 0, sizeof(query));
         sprintf(query, "SELECT courseID, courseName, courseType, courseCredit, courseTeacher, courseTeacherType, courseClassroom, courseTime, courseNote, courseDept, courseRestriction, courseTaken, courseVacancy FROM CourseList WHERE courseID LIKE \"");
         strcat(query, "%");
@@ -59,7 +61,7 @@ int search(MYSQL *mysql)
             // No result
             return -2;
         }
-        // freopen("searchResult.dat", "w", stdout);
+
         while ((row = mysql_fetch_row(result)))
         {
             // courseID
@@ -92,7 +94,7 @@ int search(MYSQL *mysql)
         }
     } else {
         // list all available courses
-        mysql_query(mysql, "set names utf8");
+        mysql_query(mysql, "set names gb2312");
         memset(query, 0, sizeof(query));
         sprintf(query, "SELECT courseID, courseName, courseType, courseCredit, courseTeacher, courseTeacherType, courseClassroom, courseTime, courseNote, courseDept, courseRestriction, courseTaken, courseVacancy FROM CourseList WHERE courseTaken < courseVacancy");
         
@@ -104,7 +106,7 @@ int search(MYSQL *mysql)
             // No result
             return -2;
         }
-        // freopen("searchResult.dat", "w", stdout);
+        
         while ((row = mysql_fetch_row(result)))
         {
             // courseID
@@ -157,13 +159,10 @@ int main(int argc, const char * argv[]) {
     
     searchStateCode = search(mysql);
     
-    // freopen("searchState.dat", "w", stdout);
-    if (searchStateCode == -1) {
-        printf("无效课程号");
-    } else if (searchStateCode == -2){
-        printf("无可选课程");
+    if (searchStateCode == -2){
+        printf("无可选课程\n");
     } else {
-        printf("查询完成");
+        printf("查询完成\n");
     }
 
     mysql_close(mysql);
