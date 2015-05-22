@@ -1,5 +1,5 @@
 //
-//  list.c
+//  search.c
 //  Course Enrolment System
 //
 //  Created by 李秦琦 on 15/5/9.
@@ -40,7 +40,7 @@ int search(MYSQL *mysql)
     // freopen("searchInfo.dat", "r", stdin);
     scanf("%s", courseID);
     
-    if (strlen(courseID) > 0) {  
+    if (strlen(courseID) > 0) {
         // search start
         mysql_query(mysql, "set names gb2312");
         memset(query, 0, sizeof(query));
@@ -61,40 +61,39 @@ int search(MYSQL *mysql)
             // No result
             return -2;
         }
-
+        // freopen("searchResult.dat", "w", stdout);
         while ((row = mysql_fetch_row(result)))
         {
             // courseID
-            printf("%s\n", row[0] ? row[0] : "");
+            printf("课程代码:%s\t", row[0] ? row[0] : "");
             // courseName
-            printf("%s\n", row[1] ? row[1] : "");
+            printf("课程名: %s\t", row[1] ? row[1] : "");
             // courseType
-            printf("%s\n", row[2] ? row[2] : "");
+            printf("课程类型: %s\t", row[2] ? row[2] : "");
             // courseCredit
-            printf("%s\n", row[3] ? row[3] : "");
+            printf("学分: %s\n\n", row[3] ? row[3] : "");
             // courseTeacher
-            printf("%s\n", row[4] ? row[4] : "");
+            printf("教师:\n%s\n", row[4] ? row[4] : "");
             // courseTeacherType
-            printf("%s\n", row[5] ? row[5] : "");
+            printf("职称:\n%s\n", row[5] ? row[5] : "");
             // courseClassroom
-            printf("%s\n", row[6] ? row[6] : "");
+            printf("教室:\n%s\n", row[6] ? row[6] : "");
             // courseTime
-            printf("%s\n", row[7] ? row[7] : "");
+            printf("时间:\n%s\n", row[7] ? row[7] : "");
             // courseNote
-            printf("%s\n", row[8] ? row[8] : "");
+            printf("备注:\n%s\n", row[8] ? row[8] : "");
             // coutseDept
-            printf("%s\n", row[9] ? row[9] : "");
+            printf("开课院系:\n%s\n", row[9] ? row[9] : "");
             // courseRestriction
-            printf("%s\n", row[10] ? row[10] : "");
+            printf("课程限制:\n%s\n", row[10] ? row[10] : "");
             // courseTaken
-            printf("%s\n", row[11] ? row[11] : "");
+            printf("\n已选人数: %s\t", row[11] ? row[11] : "");
             // courseVacancy
-            printf("%s\n", row[12] ? row[12] : "");
-            printf("\n");
+            printf("人数限制: %s\n", row[12] ? row[12] : "");
         }
     } else {
         // list all available courses
-        mysql_query(mysql, "set names gb2312");
+        mysql_query(mysql, "set names utf8");
         memset(query, 0, sizeof(query));
         sprintf(query, "SELECT courseID, courseName, courseType, courseCredit, courseTeacher, courseTeacherType, courseClassroom, courseTime, courseNote, courseDept, courseRestriction, courseTaken, courseVacancy FROM CourseList WHERE courseTaken < courseVacancy");
         
@@ -106,36 +105,35 @@ int search(MYSQL *mysql)
             // No result
             return -2;
         }
-        
+        // freopen("searchResult.dat", "w", stdout);
         while ((row = mysql_fetch_row(result)))
         {
             // courseID
-            printf("%s\n", row[0] ? row[0] : "");
+            printf("课程代码:%s\t", row[0] ? row[0] : "");
             // courseName
-            printf("%s\n", row[1] ? row[1] : "");
+            printf("课程名: %s\t", row[1] ? row[1] : "");
             // courseType
-            printf("%s\n", row[2] ? row[2] : "");
+            printf("课程类型: %s\t", row[2] ? row[2] : "");
             // courseCredit
-            printf("%s\n", row[3] ? row[3] : "");
+            printf("学分: %s\n\n", row[3] ? row[3] : "");
             // courseTeacher
-            printf("%s\n", row[4] ? row[4] : "");
+            printf("教师:\n%s\n", row[4] ? row[4] : "");
             // courseTeacherType
-            printf("%s\n", row[5] ? row[5] : "");
+            printf("职称:\n%s\n", row[5] ? row[5] : "");
             // courseClassroom
-            printf("%s\n", row[6] ? row[6] : "");
+            printf("教室:\n%s\n", row[6] ? row[6] : "");
             // courseTime
-            printf("%s\n", row[7] ? row[7] : "");
+            printf("时间:\n%s\n", row[7] ? row[7] : "");
             // courseNote
-            printf("%s\n", row[8] ? row[8] : "");
+            printf("备注:\n%s\n", row[8] ? row[8] : "");
             // coutseDept
-            printf("%s\n", row[9] ? row[9] : "");
+            printf("开课院系:\n%s\n", row[9] ? row[9] : "");
             // courseRestriction
-            printf("%s\n", row[10] ? row[10] : "");
+            printf("课程限制:\n%s\n", row[10] ? row[10] : "");
             // courseTaken
-            printf("%s\n", row[11] ? row[11] : "");
+            printf("\n已选人数: %s\t", row[11] ? row[11] : "");
             // courseVacancy
-            printf("%s\n", row[12] ? row[12] : "");
-            printf("\n");
+            printf("人数限制: %s\n", row[12] ? row[12] : "");
         }
     }
 
@@ -158,12 +156,6 @@ int main(int argc, const char * argv[]) {
     }
     
     searchStateCode = search(mysql);
-    
-    if (searchStateCode == -2){
-        printf("无可选课程\n");
-    } else {
-        printf("查询完成\n");
-    }
 
     mysql_close(mysql);
     return 0;
