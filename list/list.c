@@ -1,5 +1,5 @@
 //
-//  searchAll.c
+//  listAll.c
 //  Course Enrolment System
 //
 //  Created by ÀîÇØçù on 15/5/9.
@@ -29,62 +29,51 @@ void finishWithError(MYSQL *mysql)
     exit(1);
 }
 
-int search(MYSQL *mysql)
+int listAll(MYSQL *mysql)
 {
     MYSQL_RES *result = NULL;
     MYSQL_ROW row;
     
     char query[500];
+    char loginName[20];
     
-    // list all available courses
+    // freopen("loginInfo.dat", "r", stdin);
+    scanf("%s", loginName);
+    
+    freopen("courseTable.dat", "w+", stdout);
+    
+    // search CourseList and list all results
     mysql_query(mysql, "set names gb2312");
     memset(query, 0, sizeof(query));
-	sprintf(query, "SELECT courseID, courseName, courseType, courseCredit, courseTeacher, courseTeacherType, courseClassroom, courseTime, courseNote, courseDept, courseRestriction, courseTaken, courseVacancy FROM CourseList WHERE courseTaken < courseVacancy");
+    sprintf(query, "SELECT courseTimeslot, courseID, courseName, courseTeacher, courseClassroom FROM CourseList, CourseEnrollment WHERE CourseList.courseID = CourseEnrollment.course and CourseEnrollment.student=%s", loginName);
     if (mysql_query(mysql, query)) {
-		finishWithError(mysql);
+        finishWithError(mysql);
     }
     result = mysql_store_result(mysql);
-	if (!mysql_num_rows(result)) {
-        // No result
-		return -2;
+    if (!mysql_num_rows(result)) {
+        printf("NULL\n");
+        return -1;
     }
-    freopen("searchAllResult.dat", "w", stdout);
-	while ((row = mysql_fetch_row(result)))
+    
+    while ((row = mysql_fetch_row(result)))
     {
-		// courseID
+        // courseTimeslot
         printf("%s\n", row[0] ? row[0] : "");
+        // courseID
+        printf("%s\n", row[1] ? row[1] : "");
         // courseName
-		printf("%s\n", row[1] ? row[1] : "");
-        // courseType
         printf("%s\n", row[2] ? row[2] : "");
-		// courseCredit
-        printf("%s\n", row[3] ? row[3] : "");
         // courseTeacher
-		printf("%s\n", row[4] ? row[4] : "");
-        // courseTeacherType
-        printf("%s\n", row[5] ? row[5] : "");
-		// courseClassroom
-        printf("%s\n", row[6] ? row[6] : "");
-        // courseTime
-		printf("%s\n", row[7] ? row[7] : "");
-        // courseNote
-        printf("%s\n", row[8] ? row[8] : "");
-		// coutseDept
-        printf("%s\n", row[9] ? row[9] : "");
-        // courseRestriction
-		printf("%s\n", row[10] ? row[10] : "");
-        // courseTaken
-        printf("%s\n", row[11] ? row[11] : "");
-		// courseVacancy
-        printf("%s\n", row[12] ? row[12] : "");
+        printf("%s\n", row[3] ? row[3] : "");
+        // courseClassroom
+        printf("%s\n", row[4] ? row[4] : "");
     }
-
+    
     return 1;
 }
 
 int main(int argc, const char * argv[]) {
 
-    int searchStateCode;
     MYSQL *mysql = mysql_init(NULL);
     if (mysql == NULL) {
         fprintf(stderr, "mysql_init() failed\n");
@@ -97,7 +86,7 @@ int main(int argc, const char * argv[]) {
         return -1;
     }
     
-    searchStateCode = search(mysql);
+    listAll(mysql);
 
     mysql_close(mysql);
     return 0;

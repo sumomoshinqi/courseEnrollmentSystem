@@ -37,9 +37,8 @@ int search(MYSQL *mysql)
     char query[500];
     char courseID[20];
     
-    // freopen("searchInfo.dat", "r", stdin);
     scanf("%s", courseID);
-    
+
     if (strlen(courseID) > 0) {
         // search start
         mysql_query(mysql, "set names gb2312");
@@ -57,83 +56,41 @@ int search(MYSQL *mysql)
             finishWithError(mysql);
         }
         result = mysql_store_result(mysql);
+
+        freopen("searchResult.dat", "w+", stdout);
         if (!mysql_num_rows(result)) {
             // No result
+            printf("-\n-\n-\n-\n-\n-\n-\n-\n-\n-\n-\n-\n-\n");
             return -2;
         }
-        // freopen("searchResult.dat", "w", stdout);
         while ((row = mysql_fetch_row(result)))
         {
             // courseID
-            printf("课程代码:%s\t", row[0] ? row[0] : "");
+            printf("%s\n", row[0] ? row[0] : "");
             // courseName
-            printf("课程名: %s\t", row[1] ? row[1] : "");
+            printf("%s\n", row[1] ? row[1] : "");
             // courseType
-            printf("课程类型: %s\t", row[2] ? row[2] : "");
+            printf("%s\n", row[2] ? row[2] : "");
             // courseCredit
-            printf("学分: %s\n\n", row[3] ? row[3] : "");
+            printf("%s\n", row[3] ? row[3] : "");
             // courseTeacher
-            printf("教师:\n%s\n", row[4] ? row[4] : "");
+            printf("%s\n", row[4] ? row[4] : "");
             // courseTeacherType
-            printf("职称:\n%s\n", row[5] ? row[5] : "");
+            printf("%s\n", row[5] ? row[5] : "");
             // courseClassroom
-            printf("教室:\n%s\n", row[6] ? row[6] : "");
+            printf("%s\n", row[6] ? row[6] : "");
             // courseTime
-            printf("时间:\n%s\n", row[7] ? row[7] : "");
+            printf("%s\n", row[7] ? row[7] : "");
             // courseNote
-            printf("备注:\n%s\n", row[8] ? row[8] : "");
+            printf("%s\n", row[8] ? row[8] : "");
             // coutseDept
-            printf("开课院系:\n%s\n", row[9] ? row[9] : "");
+            printf("%s\n", row[9] ? row[9] : "");
             // courseRestriction
-            printf("课程限制:\n%s\n", row[10] ? row[10] : "");
+            printf("%s\n", row[10] ? row[10] : "");
             // courseTaken
-            printf("\n已选人数: %s\t", row[11] ? row[11] : "");
+            printf("%s\n", row[11] ? row[11] : "");
             // courseVacancy
-            printf("人数限制: %s\n", row[12] ? row[12] : "");
-        }
-    } else {
-        // list all available courses
-        mysql_query(mysql, "set names utf8");
-        memset(query, 0, sizeof(query));
-        sprintf(query, "SELECT courseID, courseName, courseType, courseCredit, courseTeacher, courseTeacherType, courseClassroom, courseTime, courseNote, courseDept, courseRestriction, courseTaken, courseVacancy FROM CourseList WHERE courseTaken < courseVacancy");
-        
-        if (mysql_query(mysql, query)) {
-            finishWithError(mysql);
-        }
-        result = mysql_store_result(mysql);
-        if (!mysql_num_rows(result)) {
-            // No result
-            return -2;
-        }
-        // freopen("searchResult.dat", "w", stdout);
-        while ((row = mysql_fetch_row(result)))
-        {
-            // courseID
-            printf("课程代码:%s\t", row[0] ? row[0] : "");
-            // courseName
-            printf("课程名: %s\t", row[1] ? row[1] : "");
-            // courseType
-            printf("课程类型: %s\t", row[2] ? row[2] : "");
-            // courseCredit
-            printf("学分: %s\n\n", row[3] ? row[3] : "");
-            // courseTeacher
-            printf("教师:\n%s\n", row[4] ? row[4] : "");
-            // courseTeacherType
-            printf("职称:\n%s\n", row[5] ? row[5] : "");
-            // courseClassroom
-            printf("教室:\n%s\n", row[6] ? row[6] : "");
-            // courseTime
-            printf("时间:\n%s\n", row[7] ? row[7] : "");
-            // courseNote
-            printf("备注:\n%s\n", row[8] ? row[8] : "");
-            // coutseDept
-            printf("开课院系:\n%s\n", row[9] ? row[9] : "");
-            // courseRestriction
-            printf("课程限制:\n%s\n", row[10] ? row[10] : "");
-            // courseTaken
-            printf("\n已选人数: %s\t", row[11] ? row[11] : "");
-            // courseVacancy
-            printf("人数限制: %s\n", row[12] ? row[12] : "");
+            printf("%s\n", row[12] ? row[12] : "");
         }
     }
 

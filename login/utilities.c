@@ -151,3 +151,19 @@ char *base64Decode(const char *data, int dataLen)
     
     return ret;
 }
+void testBase64()
+{
+    char *testingMessage = "11307120292";
+    int  encodedLength  = (int)strlen(testingMessage);
+    char *encodedMessage = base64Encode(testingMessage, encodedLength);
+    int  decodedLength = (int)strlen(encodedMessage);
+    char *decodedMessage = base64Decode(encodedMessage, decodedLength);
+    printf("\noriginal:  %s\n", testingMessage);
+    printf("\nencoded :  %s\n", encodedMessage);
+    printf("\ndecoded :  %s\n", decodedMessage);
+}
+int main(int argc, char const *argv[])
+{
+    testBase64();
+    return 0;
+}
