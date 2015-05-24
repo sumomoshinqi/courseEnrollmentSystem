@@ -1,4 +1,9 @@
 #Course Enrollment System
+To import sample database, use 
+```bash
+	mysql -u YOURUSERNAME -p YOURPASSWORD Courses < bak.sql
+```
+
 Some screenshots  
 ![1](./doc/img/1.PNG)
 
