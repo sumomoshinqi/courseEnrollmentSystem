@@ -7,7 +7,7 @@ Then run CES.exe or CESadmin.exe in `bin` folder.
 To build them manually, download [MySQL Connectors/C++](http://dev.mysql.com/downloads/connector/cpp/) and compile all components using C source files in `src/C Sourse`. After building all the components, copy them to your VS Debug or Release folder where your final CES.exe will be. Finally, open the .sln projects in `src/GUI/CES` or `src/GUI/CESadmin`, set up your Solution Platforms and run.
 
 
-To import sample database, use 
+To import or restore sample database, use 
 ```bash
 	mysql -u YOURUSERNAME -p YOURPASSWORD Courses < bak.sql
 ```
