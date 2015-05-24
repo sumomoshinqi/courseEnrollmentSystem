@@ -1,4 +1,8 @@
 #Course Enrollment System
+To use CES, copy `libmysql.dll` and `libmysql.lib` to `C:\Windows\System32` folder.  
+Then run CES.exe or CESadmin.exe in `bin` folder.
+
+
 To import sample database, use 
 ```bash
 	mysql -u YOURUSERNAME -p YOURPASSWORD Courses < bak.sql
