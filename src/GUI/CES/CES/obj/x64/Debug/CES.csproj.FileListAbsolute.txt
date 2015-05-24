@@ -1,0 +1,15 @@
+\\psf\Home\Documents\Visual Studio 2012\Projects\CES\CES\bin\x64\Debug\CES.exe.config
+\\psf\Home\Documents\Visual Studio 2012\Projects\CES\CES\bin\x64\Debug\CES.exe.manifest
+\\psf\Home\Documents\Visual Studio 2012\Projects\CES\CES\bin\x64\Debug\CES.application
+\\psf\Home\Documents\Visual Studio 2012\Projects\CES\CES\bin\x64\Debug\CES.exe
+\\psf\Home\Documents\Visual Studio 2012\Projects\CES\CES\bin\x64\Debug\CES.pdb
+\\psf\Home\Documents\Visual Studio 2012\Projects\CES\CES\obj\x64\Debug\CES.About.resources
+\\psf\Home\Documents\Visual Studio 2012\Projects\CES\CES\obj\x64\Debug\CES.login.resources
+\\psf\Home\Documents\Visual Studio 2012\Projects\CES\CES\obj\x64\Debug\CES.Main.resources
+\\psf\Home\Documents\Visual Studio 2012\Projects\CES\CES\obj\x64\Debug\CES.Properties.Resources.resources
+\\psf\Home\Documents\Visual Studio 2012\Projects\CES\CES\obj\x64\Debug\CES.csproj.GenerateResource.Cache
+\\psf\Home\Documents\Visual Studio 2012\Projects\CES\CES\obj\x64\Debug\CES.exe.manifest
+\\psf\Home\Documents\Visual Studio 2012\Projects\CES\CES\obj\x64\Debug\CES.application
+\\psf\Home\Documents\Visual Studio 2012\Projects\CES\CES\obj\x64\Debug\CES.exe
+\\psf\Home\Documents\Visual Studio 2012\Projects\CES\CES\obj\x64\Debug\CES.pdb
+\\psf\Home\Documents\Visual Studio 2012\Projects\CES\CES\obj\x64\Debug\CES.csprojResolveAssemblyReference.cache

@@ -1,0 +1,9 @@
+\\psf\home\documents\visual studio 2012\Projects\CES\CES\bin\Release\CES.exe
+\\psf\Home\Documents\Visual Studio 2012\Projects\CES\CES\bin\Release\CES.exe.config
+\\psf\Home\Documents\Visual Studio 2012\Projects\CES\CES\bin\Release\CES.pdb
+\\psf\Home\Documents\Visual Studio 2012\Projects\CES\CES\obj\Release\CES.login.resources
+\\psf\Home\Documents\Visual Studio 2012\Projects\CES\CES\obj\Release\CES.Main.resources
+\\psf\Home\Documents\Visual Studio 2012\Projects\CES\CES\obj\Release\CES.Properties.Resources.resources
+\\psf\Home\Documents\Visual Studio 2012\Projects\CES\CES\obj\Release\CES.csproj.GenerateResource.Cache
+\\psf\Home\Documents\Visual Studio 2012\Projects\CES\CES\obj\Release\CES.exe
+\\psf\Home\Documents\Visual Studio 2012\Projects\CES\CES\obj\Release\CES.pdb

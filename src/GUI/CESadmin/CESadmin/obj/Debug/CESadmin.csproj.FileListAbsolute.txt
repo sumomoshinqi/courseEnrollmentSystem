@@ -1,0 +1,1 @@
+\\psf\Home\Documents\Visual Studio 2012\Projects\CES\CESadmin\CESadmin\bin\Debug\CESadmin.exe.config

@@ -1,0 +1,12 @@
+\\psf\Home\Documents\Visual Studio 2012\Projects\CES\CESadmin\CESadmin\bin\x64\Debug\CESadmin.exe.config
+\\psf\Home\Documents\Visual Studio 2012\Projects\CES\CESadmin\CESadmin\bin\x64\Debug\CESadmin.exe
+\\psf\Home\Documents\Visual Studio 2012\Projects\CES\CESadmin\CESadmin\bin\x64\Debug\CESadmin.pdb
+\\psf\Home\Documents\Visual Studio 2012\Projects\CES\CESadmin\CESadmin\obj\x64\Debug\CESadmin.Main.resources
+\\psf\Home\Documents\Visual Studio 2012\Projects\CES\CESadmin\CESadmin\obj\x64\Debug\CESadmin.Properties.Resources.resources
+\\psf\Home\Documents\Visual Studio 2012\Projects\CES\CESadmin\CESadmin\obj\x64\Debug\CESadmin.csproj.GenerateResource.Cache
+\\psf\Home\Documents\Visual Studio 2012\Projects\CES\CESadmin\CESadmin\obj\x64\Debug\CESadmin.exe
+\\psf\Home\Documents\Visual Studio 2012\Projects\CES\CESadmin\CESadmin\obj\x64\Debug\CESadmin.pdb
+\\psf\Home\Documents\Visual Studio 2012\Projects\CES\CESadmin\CESadmin\obj\x64\Debug\CESadmin.csprojResolveAssemblyReference.cache
+\\psf\Home\Desktop\CESadmin\CESadmin\bin\x64\Debug\CESadmin.exe.config
+\\psf\Home\Desktop\CESadmin\CESadmin\obj\x64\Debug\CESadmin.exe
+\\psf\Home\Desktop\CESadmin\CESadmin\obj\x64\Debug\CESadmin.pdb
