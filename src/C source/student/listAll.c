@@ -1,10 +1,7 @@
 //
 //  listAll.c
 //  Course Enrolment System
-//
-//  Created by 李秦琦 on 15/5/9.
-//  Copyright (c) 2015年 李秦琦. All rights reserved.
-//
+
 #pragma execution_character_set("utf-8")
 
 #include <winsock2.h>
