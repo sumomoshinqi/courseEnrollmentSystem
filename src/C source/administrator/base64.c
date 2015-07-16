@@ -15,14 +15,9 @@ const char base[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456
 
 char *base64Encode(const char *data, int dataLen)
 {
-    int prepare = 0;
-    int retLen;
-    int temp = 0;
-    char *ret = NULL;
-    char *f = NULL;
-    int tmp = 0;
+    int prepare = 0, retLen, temp = 0, tmp = 0, i = 0;
+    char *ret = NULL, *f = NULL;
     char changed[4];
-    int i = 0;
     
     retLen = dataLen / 3;
     temp = dataLen % 3;
