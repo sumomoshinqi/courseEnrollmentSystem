@@ -1,6 +1,6 @@
 //
 //  base64.c
-//  Course Enrolment System
+//  Course Enrollment System
 
 #pragma execution_character_set("gb2312")
 
